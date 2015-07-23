@@ -1,0 +1,12 @@
+This is being used!
+<table><tr><th>Movies</th></tr>
+  <tbody>
+  <% movies.each do |movie| %>
+  <tr><td>
+      <b>Title:</b> <%= movie.title %>
+      <b>Director:</b> <%= movie.director %>
+      From the year <%= movie.year %>
+  </td></tr>
+  <% end %>
+  </tbody>
+</table>
