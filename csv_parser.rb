@@ -9,6 +9,7 @@ class CsvParser
       puts row.inspect
       parsed << row
     end
+		puts "parsed #{parsed.length} rows from #{filepath}"
     return parsed
   end
 

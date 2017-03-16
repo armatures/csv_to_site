@@ -1,0 +1,18 @@
+#!/usr/bin/ruby
+require 'erb'
+require_relative 'movie'
+require_relative 'csv_parser'
+
+csv_path = ARGV[0]
+puts "the first argument should end in '.csv'!" unless csv_path =~ /\.csv$/
+erb_path = ARGV[1]
+puts "the first argument should end in '.erb'!" unless erb_path =~ /\.erb$/
+
+movies = CsvParser.new.parse(csv_path)
+
+template = File.read('example.html.erb')
+
+b = binding
+# puts ERB.new(template).result(movie.instance_eval { binding })
+puts ERB.new(template).result(b)
+
