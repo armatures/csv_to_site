@@ -9,8 +9,8 @@ erb_path = ARGV[1]
 puts "the first argument should end in '.erb'!" unless erb_path =~ /\.erb$/
 
 movies = CsvParser.new.parse(csv_path)
-
-template = File.read('example.html.erb')
+puts "movies: #{movies}"
+template = File.read(erb_path)
 
 b = binding
 # puts ERB.new(template).result(movie.instance_eval { binding })
