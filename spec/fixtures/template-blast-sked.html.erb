@@ -1,19 +1,51 @@
+<!doctype html>
+<style>
+#float {
+}
+#inlineblock {
+}
+.item {
+height: 300px;
+width: 235px;
+margin: 5px;
+display: inline-block;
+vertical-align: top;
+text-align: left;
+}
+#container {
+max-width: 1200px;
+margin: 0 auto;
+text-align: center;
+}
+</style>
+<html>
+<body>
+<div id="container">
+<div id="inlineblock">
+
 <% movies.each do |movie| %>
 	<!--<%=movie.title%>-->
 	<div class="item" style="height: 480px;">
 		<a style="font-size: 16pt;" href="<%=movie.main_link%>" target="_blank;"><img src="<%=movie.img%>" style="width: 100%"/></a>
-		<p style="text-align: left; font-size: 12pt;"><a style="font-size: 16pt;" href="<%=movie.main_link%>" target="_blank;"><%=movie.title%></a><br><strong><a href="<%=movie.main_link%>" target="_blank;"><%=movie.showtime%>pm</a> @ <%=movie.location%></strong><br><strong>Director:</strong> <%=movie.director%><br><%=movie.country%> | <%= movie.type %> | Voice: <%= movie.voice %></p>
+		<p style="text-align: left; font-size: 12pt;"><a style="font-size: 16pt;" href="<%=movie.main_link%>" target="_blank;"><%=movie.title%></a><br><strong><a href="<%=movie.main_link%>" target="_blank;"><%=movie.showtime%></a> @ <%=movie.location%></strong>
+			<% if(movie.filmmaker_attending) %>
+				<br><span style="color: #ed145b;">Filmmaker Attending</span>
+			<% end %>
+
+			<% if(movie.special_guest_attending) %>
+				<br><span style="color: #ed145b;">Special Guest Attending</span>
+			<% end %>
+
+			<% if(!movie.short_link.nil?) %>
+				<br><span style="color: #ed145b;">Screening w/ <a href="<%=movie.short_link%>" target="_blank;"><%=movie.short_title%></a></span>
+			<% end %>
+			<br><strong>Director:</strong> <%=movie.director%><br><%=movie.country%> | <%= movie.type %> | Voice: <%= movie.voice %></p>
 
 		<p style="text-align: left; font-size: 12pt;"><%=movie.summary %></p>
 
 		<a href="<%=movie.main_link%>" target="_blank;"><div style="margin: 0 auto; border: 1px solid #6eccdd; border-radius: 2px; text-align: center; padding: 5px;">VIEW MORE</div></a>
 	</div>
+
+	<!-- SPECIAL STUFF GOES AFTER LOCATION, BEFORE DIRECTOR, IN THE ORDER IT APPEARS IN BELOW -->
+
 <% end %>
-
-<!-- SPECIAL STUFF GOES AFTER LOCATION, BEFORE DIRECTOR, IN THE ORDER IT APPEARS IN BELOW -->
-
-<br><span style="color: #ed145b;">Filmmaker Attending</span>
-
-<br><span style="color: #ed145b;">Special Guest Attending</span>
-
-<br><span style="color: #ed145b;">Screening w/ <a href="___SHORT_LINK___" target="_blank;">____SHORT_TITLE____</a></span>

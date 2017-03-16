@@ -9,6 +9,7 @@ class Movie
 	attr_accessor :special_guest_attending
 	attr_accessor :short_link
 	attr_accessor :short_title
+	attr_accessor :type
 
 	def initialize(parameters)
 		@title = access_field(parameters,:title)
@@ -20,9 +21,10 @@ class Movie
 		@showtime = access_field(parameters,:showtime)
 		@img = access_field(parameters,:img)
 		@main_link = access_field(parameters,:main_link)
+		@type = access_field(parameters,:type)
 
-		@filmmaker_attending = access_field(parameters,:filmmaker_attending)
-		@special_guest_attending = access_field(parameters,:special_guest_attending)
+		@filmmaker_attending = !access_field(parameters,:filmmaker_attending).nil?
+		@special_guest_attending = !access_field(parameters,:special_guest_attending).nil?
 		@short_title = access_field(parameters,:short_title)
 		@short_link = access_field(parameters,:short_link)
 	end
@@ -32,6 +34,8 @@ class Movie
 		field = fields[symbol.to_s]
 			if ( field )
 				field.strip
+			else
+				puts "field did not parse: #{ symbol.to_s }"
 			end
 	end
 end

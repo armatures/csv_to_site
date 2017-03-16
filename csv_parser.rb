@@ -2,17 +2,23 @@
 require 'csv'
 
 class CsvParser
-  def parse(filepath)
-    puts "parsing #{filepath}"
-    parsed = []
-    CSV.foreach(filepath, headers: true) do |row|
-      puts "read row: #{row.inspect}"
-			puts "title: #{row["title"]}"
-			parsed << Movie.new(row)
-    end
-		puts "parsed #{parsed.length} rows from #{filepath}"
-    return parsed
-  end
+	def parse(filepath)
+		parsed = []
+		CSV.foreach(filepath, headers: true) do |row|
+			cleaned = clean_row row
+			parsed << Movie.new(cleaned)
+		end
+		return parsed
+	end
 
+	def clean_row(row)
+		cleaned = {}
+		row.each do |pair|
+			#puts "key: '#{pair.first}'"
+			cleaned[pair.first.strip]=pair[1]
+			#puts "cleaned key: '#{pair.first.strip}'"
+		end
+		cleaned
+	end
 end
 

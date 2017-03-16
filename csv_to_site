@@ -6,13 +6,17 @@ require_relative 'csv_parser'
 csv_path = ARGV[0]
 puts "the first argument should end in '.csv'!" unless csv_path =~ /\.csv$/
 erb_path = ARGV[1]
-puts "the first argument should end in '.erb'!" unless erb_path =~ /\.erb$/
+puts "the second argument should end in '.erb'!" unless erb_path =~ /\.erb$/
+output_path = ARGV[2]
+puts "the third argument should end in '.html'!" unless output_path =~ /\.html$/
 
 movies = CsvParser.new.parse(csv_path)
-puts "movies: #{movies}"
 template = File.read(erb_path)
 
-b = binding
+File.open(output_path,'w') do |file|
+  b = binding
+  file.write( ERB.new(template).result(b) )
+end
+
 # puts ERB.new(template).result(movie.instance_eval { binding })
-puts ERB.new(template).result(b)
 
