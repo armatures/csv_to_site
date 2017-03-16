@@ -18,5 +18,3 @@ File.open(output_path,'w') do |file|
   file.write( ERB.new(template).result(b) )
 end
 
-# puts ERB.new(template).result(movie.instance_eval { binding })
-
