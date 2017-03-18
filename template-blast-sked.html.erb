@@ -39,7 +39,9 @@ text-align: center;
 			<% if(!movie.short_link.nil?) %>
 				<br><span style="color: #ed145b;">Screening w/ <a href="<%=movie.short_link%>" target="_blank;"><%=movie.short_title%></a></span>
 			<% end %>
-			<br><strong>Director:</strong> <%=movie.director%><br><%=movie.country%> | <%= movie.type %> | Voice: <%= movie.voice %></p>
+			<br><strong>Director:</strong> <%=movie.director%>
+		<br><%=movie.country%> | <%= movie.type %> | Voice: <a href="<%= movie.voice_link %>"><%= movie.voice %></a>
+		</p>
 
 		<p style="text-align: left; font-size: 12pt;"><%=movie.summary %></p>
 

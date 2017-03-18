@@ -3,6 +3,7 @@ class Movie
 	attr_accessor :showtime
 	attr_accessor :country
 	attr_accessor :voice
+	attr_accessor :voice_link
 	attr_accessor :location
 
 	attr_accessor :filmmaker_attending
@@ -16,6 +17,7 @@ class Movie
 		@director = access_field(parameters,:director)
 		@country = access_field(parameters,:country)
 		@voice = access_field(parameters,:voice)
+		@voice_link = access_field(parameters,:voice_link)
 		@location = access_field(parameters,:location)
 		@summary = access_field(parameters,:summary)
 		@showtime = access_field(parameters,:showtime)
