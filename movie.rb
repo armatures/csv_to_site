@@ -13,6 +13,8 @@ class Movie
 	attr_accessor :type
 
 	def initialize(parameters)
+		@parse_failures = []
+
 		@title = access_field(parameters,:title)
 		@director = access_field(parameters,:director)
 		@country = access_field(parameters,:country)
@@ -29,6 +31,10 @@ class Movie
 		@special_guest_attending = !access_field(parameters,:special_guest_attending).nil?
 		@short_title = access_field(parameters,:short_title)
 		@short_link = access_field(parameters,:short_link)
+
+		unless @parse_failures.empty?
+			puts "film row with title #{@title} did not parse fields #{@parse_failures}"
+		end
 	end
 
 	private
@@ -37,7 +43,7 @@ class Movie
 			if ( field )
 				field.strip
 			else
-				puts "field did not parse: #{ symbol.to_s }"
+				@parse_failures << symbol.to_s
 			end
 	end
 end
