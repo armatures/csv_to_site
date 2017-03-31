@@ -44,6 +44,7 @@ class Movie
 				field.strip
 			else
 				@parse_failures << symbol.to_s
+				nil
 			end
 	end
 end
